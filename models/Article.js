@@ -1,25 +1,26 @@
 let mongoose = require('mongoose');
 
+
 let Schema = mongoose.Schema; 
 // headline, url, summary, anything else I want
 
 let ArticleSchema = new Schema({
-    headline: {
+    title: {
         type: String,
         required: true
     },
-    summary: {
+    link: {
         type: String, 
         required: true  
     },
-    url: {
-        type: String,
-        required: true
-    },
-    byline: {
-        type: String, 
-        required: true
-    },
+    // url: {
+    //     type: String,
+    //     // required: true
+    // },
+    // byline: {
+    //     type: String, 
+    //     // required: true
+    // },
     //This populates an Article and attatches a relevant comment
     comment: {
         type: Schema.Types.ObjectId,
