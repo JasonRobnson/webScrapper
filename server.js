@@ -26,7 +26,7 @@ app.listen(PORT, function() {
 //Routes
 
 //ROOT
-app.get("/findall", (req, res) => {
+app.get("/getAll", (req, res) => {
     db.Article.find({}).then((dbArticle) => {
         console.log(dbArticle + "from the ROOT route")
         res.json(dbArticle)
@@ -37,14 +37,16 @@ app.get("/findall", (req, res) => {
 });
 //Gets  route to scrap website
 app.get("/scrape", (req, res) => {
-    axios.get("http://www.echojs.com/").then((response) => {
-        console.log("first console.log" + response.data )
+    axios.get("https://www.propublica.org/").then((response) => {
+        // console.log("first console.log" + response.data )
         let $ = cheerio
         .load(response.data);
-        $("article h2").each((i, element) => {
+        $("h1").each((i, element) => {
             let result = {};
             result.title = $(element).children("a").text();
+            console.log(result);
             result.link = $(element).children("a").attr("href");
+            
             console.log( "This is the result" + result);
             db.Article.create(result).then((dbArticle) => {
                 console.log("This is the DBarticle" + dbArticle);
