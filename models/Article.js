@@ -21,6 +21,10 @@ let ArticleSchema = new Schema({
         type: String, 
         required: true
     },
+    dateWritten: {
+        type: String, 
+        // required: true
+    },
     //This populates an Article and attatches a relevant comment
     comment: {
         type: Schema.Types.ObjectId,
