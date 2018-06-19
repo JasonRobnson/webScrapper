@@ -68,12 +68,12 @@ app.get("/scrape", (req, res) => {
                 throw err
             });
         });
-        res.send("Scrape Complete!")
+        res.render('home');
     });
 }); 
 
 app.get("/", (req, res) => {
-    res.render('home');
+    res.render('index');
 })
 
 
