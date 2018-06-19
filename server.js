@@ -49,6 +49,7 @@ app.get("/scrape", (req, res) => {
             result.link = $(element).children("a").attr("href");
             result.summary = $(element).next("h2").text();
             result.byline = $(element).nextAll(".metadata").children(".byline").text();
+            result.dateWritten = $(element).nextAll(".metadata").children(".timestamp").text();
             
             console.log( "This is the result" + result);
             db.Article.create(result).then((dbArticle) => {
