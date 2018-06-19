@@ -42,10 +42,12 @@ app.get("/scrape", (req, res) => {
         let $ = cheerio
         .load(response.data);
         $("h1").each((i, element) => {
+
             let result = {};
+
             result.title = $(element).children("a").text();
-            console.log(result);
             result.link = $(element).children("a").attr("href");
+            result.summary = $(element).next("h2").text();
             
             console.log( "This is the result" + result);
             db.Article.create(result).then((dbArticle) => {
