@@ -1,11 +1,12 @@
 let express = require('express')
 let bodyParser = require('body-parser')
-let logger = require("morgan");
-let  mongoose = require("mongoose");
-let  axios = require("axios");
-let  cheerio = require("cheerio");
-let db = require("./models");
+let logger = require('morgan');
+let  mongoose = require('mongoose');
+let  axios = require('axios');
+let  cheerio = require('cheerio');
+let db = require('./models');
 let  PORT = 3000;
+let expHbs = require('express-handlebars');
 
 //express to run the server
 let app = express();
@@ -15,11 +16,20 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+//initializing handlebars.js views
+app.engine('handlebars', expHbs({
+    defaultLayout: 'main',
+    partialsPath: 'partials'
+}));
+app.set('view engine', 'handlebars');
+
+
+
 // Connect to the Mongo DB
 // let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webScrapperDB";
 mongoose.connect("mongodb://localhost/webScrapperDB");
 
-app.listen(PORT, function() {
+app.listen(PORT, () => {
     console.log("App running on port " + PORT + "!");
  });
 
@@ -62,6 +72,9 @@ app.get("/scrape", (req, res) => {
     });
 }); 
 
+app.get("/", (req, res) => {
+    res.render('home');
+})
 
 
 
