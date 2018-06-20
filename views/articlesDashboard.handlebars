@@ -1,37 +1,41 @@
+<div class="container">
 
-  <di
-  </div>
-  <div class="container">
-      <div class="main">
-          <div class="row">
-              <div class="col m12 truncate">
-                  <h1>Below this the links and buttons will be displayed in each card  dadad</h1>
-              </div>
-          </div>
-                  <div class="row">
-                        
-                         <div class="col s12 m4">
-                            <div class="card red lighten-2">
-                                {{#each article}}
-                                <div class="card-content white-text">
-                                <span class="card-title left-align"><h5>{{title}}</h5></span>
-                                <p>{{summary}}</p>
-                                <p>{{byline}}</p>
-                                <p>{{dateWritten}}</p>
-                                </div>
-                                <div class="card-action center">
-                                <a class="waves-effect waves-light btn" href="#"><i class="fas fa-heart"></i></a>
-                                <a class="waves-effect waves-light btn" href="/comment/form"><i class="fas fa-comment"></i></a>
-                                <a class="waves-effect waves-light btn" href="#"><i class="fas fa-trash"></i></a>
-                                </div>
-                                 {{/each}}
-                            </div>
-                        </div>
-                    </div>
-           
-               
-      </div>
-  <div class="footer">
+    <div class="row">
+        <div class="col m12 truncate">
+            <h1>Below this the links and buttons will be displayed in each card dadad</h1>
+        </div>
+    </div>
+    <div class="row">
 
-  </div>
-    
+        <div class="col m4">
+            <div class="card indigo lighten-1">
+                {{#each article}}
+                <div class="card-content white-text">
+                    <span class="card-title left-align">
+                        <h5>
+                            <a href={{link}}>{{title}}</h5>
+                        </a>
+                    </span>
+                    <p class="line-clamp-3">{{summary}}</p>
+                    <br>
+                    <p>{{byline}}</p>
+                    <p>{{dateWritten}}</p>
+                </div>
+                <div class="card-action center">
+                    <a class="waves-effect red waves-light btn" data-id={{_id}} href="#">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a class="waves-effect red  waves-light btn" data-id={{_id}} href="/comment/form">
+                        <i class="fas fa-comment"></i>
+                    </a>
+                    <a class="waves-effect red  waves-light btn" data-id={{_id}} href="#">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+
+</div>

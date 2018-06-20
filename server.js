@@ -38,6 +38,7 @@ app.listen(PORT, () => {
 //ROOT
 app.get("/getAll", (req, res) => {
     db.Article.find({}).then((dbArticle) => {
+        console.log(dbArticle + " this is from the DBARTICLE!!!!")
         res.render('articlesDashboard', {
             article: dbArticle,
 
