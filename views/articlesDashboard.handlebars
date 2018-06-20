@@ -9,22 +9,27 @@
               </div>
           </div>
                   <div class="row">
-                            <div class="col s12 m4">
+                        
+                         <div class="col s12 m4">
                             <div class="card red lighten-2">
+                                {{#each article}}
                                 <div class="card-content white-text">
-                                <span class="card-title truncate left-align"><h4>Article title will go here what else can we cram into this span</h4></span>
-                                <p> <b>Article Summary will go in this block =>.</b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam amet recusandae accusantium molestiae numquam consequuntur deserunt placeat, rerum quaerat libero reprehenderit perspiciatis. Numquam, error libero quam sunt possimus quas.</p>
+                                <span class="card-title left-align"><h5>{{title}}</h5></span>
+                                <p>{{summary}}</p>
+                                <p>{{byline}}</p>
+                                <p>{{dateWritten}}</p>
                                 </div>
                                 <div class="card-action center">
                                 <a class="waves-effect waves-light btn" href="#"><i class="fas fa-heart"></i></a>
                                 <a class="waves-effect waves-light btn" href="/comment/form"><i class="fas fa-comment"></i></a>
                                 <a class="waves-effect waves-light btn" href="#"><i class="fas fa-trash"></i></a>
                                 </div>
-                            </div>
+                                 {{/each}}
                             </div>
                         </div>
+                    </div>
            
-
+               
       </div>
   <div class="footer">
 
