@@ -1,41 +1,62 @@
 <div class="container">
 
-    <div class="row">
+     <div class="row">
         <div class="col m12 truncate">
-            <h1>Below this the links and buttons will be displayed in each card dadad</h1>
+            <h1>Recent News Stories</h1>
         </div>
     </div>
     <div class="row">
 
-        <div class="col m4">
+        <div class="col m12">
+             {{#each article}}
             <div class="card indigo lighten-1">
-                {{#each article}}
+               
                 <div class="card-content white-text">
-                    <span class="card-title left-align">
-                        <h5>
+                            <span class="card-title left-align">
+                             <h5>
                             <a href={{link}}>{{title}}</h5>
-                        </a>
-                    </span>
-                    <p class="line-clamp-3">{{summary}}</p>
-                    <br>
-                    <p>{{byline}}</p>
-                    <p>{{dateWritten}}</p>
+                            </a>
+                            </span>
+                            <p class="line-clamp-3">{{summary}}</p>
+                            <br>
+                            <p>{{byline}}</p>
+                            <p>{{dateWritten}}</p>
+
+                    <div class="card-action center">
+
+                            <a class="waves-effect red waves-light btn" data-id={{_id}} href="#">
+                                <i class="fas fa-heart"></i></a>
+                            <a class="modal-trigger waves-effect red waves-light btn" href="#modal-{{_id}}">
+                                <i class="fas fa-comment"></i></a>
+                            <a class="waves-effect red  waves-light btn" data-id={{_id}} href="#">
+                                <i class="fas fa-trash"></i></a>
+
+                                             <!-- Modal Structure -->
+                                    <div id="modal-{{_id}}" class="modal">
+                                        <div class="modal-content">
+                                        <h4>{{title}}</h4>
+                                                <div class="input-field col m12">
+                                                
+                                                    <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                                                    <label for="textarea2">Your comments to the article here...</label>
+                                                    {{!-- <a class="waves-effect waves-light btn" href="/submit">Submit</a> --}}
+                                                    <a class="waves-effect waves-light btn" href="/submit"><i class="material-icons right">submit</i></a>
+                                               
+                                                    </button>
+                                                </div>
+                                             </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                                        </div>
+                                </div>
+
+                    </div>
                 </div>
-                <div class="card-action center">
-                    <a class="waves-effect red waves-light btn" data-id={{_id}} href="#">
-                        <i class="fas fa-heart"></i>
-                    </a>
-                    <a class="waves-effect red  waves-light btn" data-id={{_id}} href="/comment/form">
-                        <i class="fas fa-comment"></i>
-                    </a>
-                    <a class="waves-effect red  waves-light btn" data-id={{_id}} href="#">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </div>
-                {{/each}}
             </div>
-        </div>
+                {{/each}}
+         </div>
+    
     </div>
-
-
 </div>
+
