@@ -93,7 +93,7 @@ app.get("/comment/form", (req, res) => {
     res.render('comment');
 })
 
-app.get("delete/:id", (req, res) => {
+app.get("/delete/:id", (req, res) => {
 
 })
 
