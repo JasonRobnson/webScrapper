@@ -37,15 +37,17 @@ app.listen(PORT, () => {
 
 //ROOT
 app.get("/getAll", (req, res) => {
-    db.Article.find({}).then((dbArticle) => {
-        console.log(dbArticle + " this is from the DBARTICLE!!!!")
-        res.render('articlesDashboard', {
-            article: dbArticle,
+    db.Article.find({})
+        .populate("comment")
+        .then((dbArticle) => {
+            console.log(dbArticle + " this is from the DBARTICLE!!!!")
+            res.render('articlesDashboard', {
+                article: dbArticle
 
-        });
-    }).catch((err) => {
-        console.log(err)
-    })
+            });
+        }).catch((err) => {
+            console.log(err)
+         })
 });
 //Gets  route to scrap website
 app.get("/scrape", (req, res) => {
