@@ -105,11 +105,17 @@ app.get("/comment/:id", (req, res) => {
 });
 
 app.get("/delete/:id", (req, res) => {
+    console.log(req.params.id.slice(1));
+    db.Article.remove({
+        "_id": req.params.id.slice(1),
+    }).then((dbArticle) => {
+        res.redirect('/getall')
+    })
 
-})
+});
 
 app.post("/submit/:id", (req, res) => {
-    console.log(req.params.id)
+    console.log(req.body)
     // res.render("articlesDashboard.handlebars")
 })
 
