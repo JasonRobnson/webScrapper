@@ -7,17 +7,19 @@
 
                     <div class="row">
                         <div class="row">
+                            {{#each article}}
                             <form class="col s12">
                                 <div class="row">
                                     <div class="container">
                                         <div class="row">
+                                           <h5>{{title}}</h5>
                                              <form action="/submit" method="post">
                                                 <div class="input-field col m12">
-                                                
+                                                   
                                                     <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
                                                     <label for="textarea2">Your comments to the article here...</label>
                                                     {{!-- <a class="waves-effect waves-light btn" href="/submit">Submit</a> --}}
-                                                    <a class="waves-effect waves-light btn" href="/submit"><i class="material-icons right">submit</i></a>
+                                                    <a class="waves-effect waves-light btn" href="/submit/:{{_id}}"><i class="material-icons right">submit</i></a>
                                                
                                                     </button>
                                                 </div>
@@ -30,7 +32,7 @@
                                 </div>
                             </form>
                         </div>
-
+                         {{/each}}
                     </div>
 
                 </div>

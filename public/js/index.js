@@ -1,5 +1,4 @@
-$(document).ready(() => {
-    // $('.modal').modal();
-    alert("DOM READY!")
-    
-  });
+
+$(document).ready(function() {
+  
+});

@@ -37,15 +37,17 @@ app.listen(PORT, () => {
 
 //ROOT
 app.get("/getAll", (req, res) => {
-    db.Article.find({}).then((dbArticle) => {
-        console.log(dbArticle + " this is from the DBARTICLE!!!!")
-        res.render('articlesDashboard', {
-            article: dbArticle,
+    db.Article.find({})
+        .populate("comment")
+        .then((dbArticle) => {
+            console.log(dbArticle + " this is from the DBARTICLE!!!!")
+            res.render('articlesDashboard', {
+                article: dbArticle
 
-        });
-    }).catch((err) => {
-        console.log(err)
-    })
+            });
+        }).catch((err) => {
+            console.log(err)
+         })
 });
 //Gets  route to scrap website
 app.get("/scrape", (req, res) => {
@@ -70,7 +72,7 @@ app.get("/scrape", (req, res) => {
                 throw err
             });
         });
-        res.render('articlesDashboard');
+        res.redirect('/getall');
     });
 }); 
 
@@ -82,19 +84,33 @@ app.post("/submit", (req, res) => {
     })
     .then((dbComment) => {
         // res.json(dbComment);
-        res.send("articlesDashboard")
+        res.render("articlesDashboard")
     })
     .catch((err) => {
         rs.json(err);
     });
 });
 
-app.get("/comment/form", (req, res) => {
-    res.render('comment');
+app.get("/comment/:id", (req, res) => {
+    db.Article.find({
+        "_id": req.params.id.slice(1)
+    }).then((dbArticle) => {
+        console.log(dbArticle + "from the /Comment Route");
+        res.render('comment', {
+            article: dbArticle
+         })
+    }).catch((err) => {
+        console.log(err);
+    });
+});
+
+app.get("/delete/:id", (req, res) => {
+
 })
 
-app.get("delete/:id", (req, res) => {
-
+app.post("/submit/:id", (req, res) => {
+    console.log(req.params.id)
+    // res.render("articlesDashboard.handlebars")
 })
 
 app.get("/", (req, res) => {
