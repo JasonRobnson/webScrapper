@@ -76,22 +76,27 @@ app.get("/scrape", (req, res) => {
     });
 }); 
 
-app.post("/submit", (req, res) => {
-    console.log(req.body)
-    db.Comment.create(req.body) 
-    .then((dbComment) => {
-        return db.Article.findOneAndUpdate({}, { $push: { Comment: dbComment_id } }, {new: true});
+app.post("/comment/:id", (req, res) => {
+    console.log(req.params.id)
+    console.log(req.body.comment)
+    db.Comment.create(req.body)
+    .then((newComment) => {
+
+        db.Article.findById({ _id: req.params.id},{$push: { commentBody: req.body }}, {new: true});
     })
-    .then((dbComment) => {
-        // res.json(dbComment);
+    .then((dbArticle) => {
         res.render("articlesDashboard")
     })
     .catch((err) => {
-        rs.json(err);
-    });
-});
+    console.log(err);
+        }) 
 
-app.get("/comment/:id", (req, res) => {
+    });
+    // create comment
+    // in its then block, update the article with vvvvv code
+
+
+app.get("/makecomment/:id", (req, res) => {
     db.Article.find({
         "_id": req.params.id.slice(1)
     }).then((dbArticle) => {

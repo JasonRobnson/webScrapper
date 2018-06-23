@@ -3,15 +3,18 @@ $(document).ready(function() {
     $('#submitComment').on("click", (e) => {
         e.preventDefault();
         console.log("Submit Button Clicked")
-        let commentData = $("#textarea2").val().trim();
+        let textComments = $("#textarea2").val().trim();
         let buttonData = $("#submitComment").data("id");
-        let routeUrl = `/submit/${buttonData}`; 
-        console.log(commentData);
+        let routeUrl = `/comment/${buttonData}`; 
+        console.log(textComments);
         console.log(routeUrl);
         $.ajax({
-            method: "PUT",
+            type: "POST",
             url: routeUrl, 
-            data: commentData,
+            data: {
+                body: textComments
+            }
+
         })
         .then((res) => {
             window.location.href = "/getall"
