@@ -72,7 +72,7 @@ app.get("/scrape", (req, res) => {
                 throw err
             });
         });
-        res.render('articlesDashboard');
+        res.redirect('/getall');
     });
 }); 
 
@@ -84,7 +84,7 @@ app.post("/submit", (req, res) => {
     })
     .then((dbComment) => {
         // res.json(dbComment);
-        res.send("articlesDashboard")
+        res.render("articlesDashboard")
     })
     .catch((err) => {
         rs.json(err);
@@ -97,6 +97,11 @@ app.get("/comment/form", (req, res) => {
 
 app.get("/delete/:id", (req, res) => {
 
+})
+
+app.post("/submit/:id", (req, res) => {
+    console.log(req)
+    res.render("articlesDashboard.handlebars")
 })
 
 app.get("/", (req, res) => {
