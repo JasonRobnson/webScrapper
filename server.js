@@ -73,11 +73,17 @@ app.get("/articles/scrape", (req, res) => {
 }); 
 
 app.post("/articles/:id", (req, res) => {
-    let articleId = req.params.id
-    console.log(req.body)
-    db.Comment.create(req.body);
-    db.Article.update({ _id: req.params.id}, {$push: {comment: req.body.body }}, {new: true});
-  
+    console.log(req.body);
+    db.Comment.create(req.body)
+    .then((dbComment) => {
+        return db.Article.findOneAndUpdate({ _id: req.params.id}, {note: dbNote_id}, {new: true});
+    })
+    .then((dbArticle) => {
+        res.json(dbArticle);
+    })
+    .catch((err) => {
+        res.json(err);
+    })
 
     });
 
