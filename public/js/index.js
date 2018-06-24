@@ -5,14 +5,15 @@ $(document).ready(function() {
         console.log("Submit Button Clicked")
         let textComments = $("#textarea2").val().trim();
         let buttonData = $("#submitComment").data("id");
-        let routeUrl = `/comment/${buttonData}`; 
+        let routeUrl = `/articles/${buttonData}`; 
         console.log(textComments);
         console.log(routeUrl);
         $.ajax({
             type: "POST",
             url: routeUrl, 
             data: {
-                body: textComments
+                body: textComments,
+                article: buttonData
             }
 
         })

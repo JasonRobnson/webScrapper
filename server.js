@@ -35,12 +35,10 @@ app.listen(PORT, () => {
 
 //Routes
 
-//ROOT
-app.get("/getAll", (req, res) => {
+app.get("/articles", (req, res) => {
     db.Article.find({})
         .populate("comment")
         .then((dbArticle) => {
-            console.log(dbArticle + " this is from the DBARTICLE!!!!")
             res.render('articlesDashboard', {
                 article: dbArticle
 
@@ -49,54 +47,42 @@ app.get("/getAll", (req, res) => {
             console.log(err)
          })
 });
-//Gets  route to scrap website
-app.get("/scrape", (req, res) => {
+
+//Get  route to scrap website
+app.get("/articles/scrape", (req, res) => {
     axios.get("https://www.propublica.org/").then((response) => {
-        // console.log("first console.log" + response.data )
+
         let $ = cheerio
         .load(response.data);
         $("h1").each((i, element) => {
 
             let result = {};
-
             result.title = $(element).children("a").text();
             result.link = $(element).children("a").attr("href");
             result.summary = $(element).next("h2").text();
             result.byline = $(element).nextAll(".metadata").children(".byline").text();
             result.dateWritten = $(element).nextAll(".metadata").children(".timestamp").text();
-            
-            console.log( "This is the result" + result);
+
             db.Article.create(result).then((dbArticle) => {
-                console.log("This is the DBarticle" + dbArticle);
             }).catch((err) => {
                 throw err
             });
         });
-        res.redirect('/getall');
+        res.redirect('/articles');
     });
 }); 
 
-app.post("/comment/:id", (req, res) => {
-    console.log(req.params.id)
-    console.log(req.body.comment)
-    db.Comment.create(req.body)
-    .then((newComment) => {
-
-        db.Article.findById({ _id: req.params.id},{$push: { commentBody: req.body }}, {new: true});
-    })
-    .then((dbArticle) => {
-        res.render("articlesDashboard")
-    })
-    .catch((err) => {
-    console.log(err);
-        }) 
+app.post("/articles/:id", (req, res) => {
+    let articleId = req.params.id
+    console.log(req.body)
+    db.Comment.create(req.body);
+    db.Article.update({ _id: req.params.id}, {$push: {comment: req.body.body }}, {new: true});
+  
 
     });
-    // create comment
-    // in its then block, update the article with vvvvv code
 
 
-app.get("/makecomment/:id", (req, res) => {
+app.get("/articles/comment/:id", (req, res) => {
     db.Article.find({
         "_id": req.params.id.slice(1)
     }).then((dbArticle) => {
@@ -109,7 +95,7 @@ app.get("/makecomment/:id", (req, res) => {
     });
 });
 
-app.get("/delete/:id", (req, res) => {
+app.get("/articles/delete/:id", (req, res) => {
     console.log(req.params.id.slice(1));
     db.Article.remove({
         "_id": req.params.id.slice(1),
@@ -119,14 +105,6 @@ app.get("/delete/:id", (req, res) => {
 
 });
 
-app.post("/submit/:id", (req, res) => {
-    console.log(req.body)
-    // res.render("articlesDashboard.handlebars")
-})
-
-app.get("/", (req, res) => {
-    res.render('index');
-})
 
 
 
