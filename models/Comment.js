@@ -3,8 +3,9 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let CommentSchema = new Schema({
-    title: String,
+    article: String, 
     body: String,
+    
 });
 
 let Comment = mongoose.model("Comment", CommentSchema);

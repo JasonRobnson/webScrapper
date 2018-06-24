@@ -23,12 +23,13 @@
                             <p>{{dateWritten}}</p>
 
                     <div class="card-action center">
-
+                            <a class="waves-effect red waves-light btn" data-id={{_id}} href="/articles/notes/:{{_id}}">
+                            <i class="fas fa-sticky-note"></i></a>
                             <a class="waves-effect red waves-light btn" data-id={{_id}} href="#">
                                 <i class="fas fa-heart"></i></a>
-                            <a class= " waves-effect red waves-light btn" href="/comment/:{{_id}}">
+                            <a class= " waves-effect red waves-light btn" href="/articles/comment/:{{_id}}">
                                 <i class="fas fa-comment"></i></a>
-                            <a class="waves-effect red  waves-light btn" href="/delete/:{{_id}}">
+                            <a class="waves-effect red  waves-light btn" href="/articles/delete/:{{_id}}">
                                 <i class="fas fa-trash"></i></a>
                          
 

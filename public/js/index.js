@@ -3,23 +3,23 @@ $(document).ready(function() {
     $('#submitComment').on("click", (e) => {
         e.preventDefault();
         console.log("Submit Button Clicked")
-        let commentData = $("#textarea2").val().trim();
+        let textComments = $("#textarea2").val().trim();
         let buttonData = $("#submitComment").data("id");
-        let routeUrl = `/submit/${buttonData}`; 
-        console.log(commentData);
+        let routeUrl = `/articles/${buttonData}`; 
+        console.log(textComments);
         console.log(routeUrl);
         $.ajax({
-            method: "PUT",
+            type: "POST",
             url: routeUrl, 
-            data: commentData,
-        })
+            data: {
+                body: textComments,
+                article: buttonData
+            }
+         })
         .then((res) => {
-            window.location.href = "/getall"
-        })
-      
-      
+            window.location.href = "/articles"
+         })
     });
-  
 });
 
 
