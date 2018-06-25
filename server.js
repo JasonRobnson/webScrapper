@@ -77,7 +77,7 @@ app.post("/articles/:id", (req, res) => {
     db.Comment.create(req.body)
     .then((dbComment) => {
         console.log(req.params.id)
-        return db.Article.findOneAndUpdate({ _id: req.params.id}, { comment: dbComment._id }, {new: true});
+        return db.Article.findOneAndUpdate({ _id: req.params.id}, { $push: { comment: dbComment._id } }, {new: true});
     })
     .then((dbArticle) => {
         res.json(dbArticle)
