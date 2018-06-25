@@ -7,11 +7,12 @@ let Schema = mongoose.Schema;
 let ArticleSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true, 
     },
     link: {
         type: String, 
-        required: true  
+        required: true , 
     },
     summary: {
         type: String,
@@ -19,19 +20,20 @@ let ArticleSchema = new Schema({
     },
     byline: {
         type: String, 
-        required: true
+        // required: true
     },
     dateWritten: {
         type: String, 
         // required: true
     },
     //This populates an Article and attatches a relevant comment
-    comment: 
-        {
+    comment: [
+
+     {
         type: Schema.Types.ObjectId,
         ref: "Comment"
         }
-        
+    ]
 });
 //this builds our model from the Schema, using Mongoose model method
 let Article = mongoose.model("Article", ArticleSchema);

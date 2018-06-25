@@ -25,9 +25,14 @@ app.set('view engine', 'handlebars');
 
 
 
+
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webScrapperDB";
+
 // Connect to the Mongo DB
-// let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webScrapperDB";
-mongoose.connect("mongodb://localhost/webScrapperDB");
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+
+
 
 app.listen(PORT, () => {
     console.log("App running on port " + PORT + "!");
@@ -77,7 +82,7 @@ app.post("/articles/:id", (req, res) => {
     db.Comment.create(req.body)
     .then((dbComment) => {
         console.log(req.params.id)
-        return db.Article.findOneAndUpdate({ _id: req.params.id}, { comment: dbComment._id }, {new: true});
+        return db.Article.findOneAndUpdate({ _id: req.params.id}, { $push: { comment: dbComment._id } }, {new: true});
     })
     .then((dbArticle) => {
         res.json(dbArticle)
@@ -92,7 +97,7 @@ app.get("/articles/notes/:id",(req, res) => {
     console.log("This is the articles/notes/:id" + articleNumber)
     db.Article.findOne({_id: articleNumber }).populate('comment').then((dbArticle) => {
             console.log(dbArticle);
-            res.render('index', {
+            res.render('home', {
                 article: dbArticle
             })
         })
