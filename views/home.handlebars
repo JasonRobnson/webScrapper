@@ -1,32 +1,23 @@
+<div class="header">
 
-  <di
-  </div>
-  <div class="container">
-      <div class="main">
-          <div class="row">
-              <div class="col m12 truncate">
-                  <h1>Below this the links and buttons will be displayed in each card  dadad</h1>
-              </div>
-          </div>
-                  <div class="row">
-                            <div class="col s12 m4">
-                            <div class="card red lighten-2">
-                                <div class="card-content white-text">
-                                <span class="card-title truncate left-align"><h4>Article title will go here what else can we cram into this span</h4></span>
-                                <p> <b>Article Summary will go in this block =>.</b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam amet recusandae accusantium molestiae numquam consequuntur deserunt placeat, rerum quaerat libero reprehenderit perspiciatis. Numquam, error libero quam sunt possimus quas.</p>
-                                </div>
-                                <div class="card-action center">
-                                <a class="waves-effect waves-light btn" href="#"><i class="fas fa-heart"></i></a>
-                                <a class="waves-effect waves-light btn" href="/comment/form"><i class="fas fa-comment"></i></a>
-                                <a class="waves-effect waves-light btn" href="#"><i class="fas fa-trash"></i></a>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-           
-
-      </div>
-  <div class="footer">
-
-  </div>
-    
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+                    <h4>Previous Article Notes:</h4>
+                    <div>
+                        {{#each article}}
+                        <h5>{{title}}</h5>
+                        <p>{{summary}}</p>
+                       
+                            {{#each comment}}
+                        
+                            <li><b>{{body}}</b></li>
+                            {{/each}}
+                            {{/each}}
+                        
+                    </div>
+                <a class="waves-effect waves-light btn" href="/articles">Back to Articles</a>
+         </div>
+     </div>
+</div>

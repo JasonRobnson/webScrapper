@@ -7,11 +7,12 @@ let Schema = mongoose.Schema;
 let ArticleSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true, 
     },
     link: {
         type: String, 
-        required: true  
+        required: true , 
     },
     summary: {
         type: String,
@@ -19,7 +20,7 @@ let ArticleSchema = new Schema({
     },
     byline: {
         type: String, 
-        required: true
+        // required: true
     },
     dateWritten: {
         type: String, 

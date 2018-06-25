@@ -25,9 +25,14 @@ app.set('view engine', 'handlebars');
 
 
 
+
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webScrapperDB";
+
 // Connect to the Mongo DB
-// let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/webScrapperDB";
-mongoose.connect("mongodb://localhost/webScrapperDB");
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+
+
 
 app.listen(PORT, () => {
     console.log("App running on port " + PORT + "!");
@@ -92,7 +97,7 @@ app.get("/articles/notes/:id",(req, res) => {
     console.log("This is the articles/notes/:id" + articleNumber)
     db.Article.findOne({_id: articleNumber }).populate('comment').then((dbArticle) => {
             console.log(dbArticle);
-            res.render('index', {
+            res.render('home', {
                 article: dbArticle
             })
         })
