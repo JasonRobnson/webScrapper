@@ -37,7 +37,7 @@ app.listen(PORT, () => {
 
 app.get("/articles", (req, res) => {
     db.Article.find({})
-        .populate("comment")
+        .populate("comments")
         .then((dbArticle) => {
             res.render('articlesDashboard', {
                 article: dbArticle
@@ -76,23 +76,36 @@ app.post("/articles/:id", (req, res) => {
     console.log(req.body);
     db.Comment.create(req.body)
     .then((dbComment) => {
-        return db.Article.findOneAndUpdate({ _id: req.params.id}, {note: dbNote_id}, {new: true});
+        console.log(req.params.id)
+        return db.Article.findOneAndUpdate({ _id: req.params.id}, { comment: dbComment._id }, {new: true});
     })
     .then((dbArticle) => {
-        res.json(dbArticle);
+        res.json(dbArticle)
     })
     .catch((err) => {
         res.json(err);
     })
+});
 
-    });
+app.get("/articles/notes/:id",(req, res) => {
+    let articleNumber = req.params.id.slice(1);
+    console.log("This is the articles/notes/:id" + articleNumber)
+    db.Article.findOne({_id: articleNumber }).populate('comment').then((dbArticle) => {
+            console.log(dbArticle);
+            res.render('index', {
+                article: dbArticle
+            })
+        })
+        .catch((err) => {
+            res.json(err);
+        })
+})
 
 
 app.get("/articles/comment/:id", (req, res) => {
     db.Article.find({
         "_id": req.params.id.slice(1)
     }).then((dbArticle) => {
-        console.log(dbArticle + "from the /Comment Route");
         res.render('comment', {
             article: dbArticle
          })
@@ -106,12 +119,14 @@ app.get("/articles/delete/:id", (req, res) => {
     db.Article.remove({
         "_id": req.params.id.slice(1),
     }).then((dbArticle) => {
-        res.redirect('/getall')
+        res.redirect('/articles')
     })
 
 });
 
-
+app.get("/", (req, res) => {
+    res.render('index')
+})
 
 
 

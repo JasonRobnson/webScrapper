@@ -15,15 +15,11 @@ $(document).ready(function() {
                 body: textComments,
                 article: buttonData
             }
-
-        })
+         })
         .then((res) => {
-            window.location.href = "/getall"
-        })
-      
-      
+            window.location.href = "/articles"
+         })
     });
-  
 });
 
 

@@ -26,12 +26,12 @@ let ArticleSchema = new Schema({
         // required: true
     },
     //This populates an Article and attatches a relevant comment
-    comment: [
+    comment: 
         {
         type: Schema.Types.ObjectId,
         ref: "Comment"
         }
-    ]
+        
 });
 //this builds our model from the Schema, using Mongoose model method
 let Article = mongoose.model("Article", ArticleSchema);

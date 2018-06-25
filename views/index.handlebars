@@ -4,9 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 container">
+            
                     <div>
-                        <h2>The ProPublica WebScrapper APP</h2>
+                        {{#each article}}
+                        <h2>{{title}}</h2>
+                        <p>{{summary}}</p>
                     </div>
+                    <div>
+                        {{comment.body}}
+                    </div>
+                    {{/each}}
         </div>
     </div>
 </div>
