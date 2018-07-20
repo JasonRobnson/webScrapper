@@ -11,11 +11,9 @@
 
 ## Deployed Site 
 ![alt text](./public/images/WebScrapper.PNG "WebScrapper App Picture")
-[Link to Deployed App](https://sleepy-dawn-98220.herokuapp.com/)
+[Deployed App](https://sleepy-dawn-98220.herokuapp.com/)
 
 # Tools
-
-
 - Node.js
 - Mysql 
 - Express.js
@@ -60,7 +58,7 @@
 
 
 ### Required File Structure
-WebScrapper > models + public + views
+![alt text](./public/images/FileStructure.PNG "WebScrapper FileStructure")
 
 
 ### commands
