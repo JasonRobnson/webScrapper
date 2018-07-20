@@ -1,5 +1,5 @@
-# BurgerBurger
-A simple FullStack-App that creates burger, and destroys burger
+# ProPublica Scrapper
+A FullStack-App that scrapes the ProPublica website and allows users to take notes, and delete articles. 
 
 
 # Tools
@@ -15,6 +15,12 @@ The tools that I used for this project were:
 - GitHub
 - Nodemon.js
 - DocToc (Table of Contents)
+- Materialize
+- MongoDb
+- Mongoose.js
+- Morgan
+- Cherrio
+- Axios 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -24,29 +30,21 @@ The tools that I used for this project were:
   - [JQUERY](#Jquery.js)
 
 - [Backend](#Backend)
- - [Node.js](#Node.js)
- - [MongoDB](#MongoDB)
- - [Mongoose.js](#Mongoose)
- - [Express.js](#Express.js)
- - [Nodemon](#Nodemon.js)
- - [Morgan](#Morgan)
- - [Axios](#Axios)
- - [Cheerio.js](#Cheerio)
- - [Express-Handlebars.js](#Express-Handlebars.js)
+  - [Node.js](#Node.js)
+  - [MongoDB](#MongoDB)
+  - [Mongoose.js](#Mongoose)
+  - [Express.js](#Express.js)
+  - [Nodemon](#Nodemon.js)
+  - [Morgan](#Morgan)
+  - [Axios](#Axios)
+  - [Cheerio.js](#Cheerio)
+  - [Express-Handlebars.js](#Express-Handlebars.js)
 
 - [Development Tools](#development-tools)
- - [Heroku](#Heroku)
- - [GitHub](#GitHub)
- - [DocToc](#DocToc)
+  - [Heroku](#Heroku)
+  - [GitHub](#GitHub)
+  - [DocToc](#DocToc)
  
-
-let logger = require('morgan');
-let  mongoose = require('mongoose');
-let  axios = require('axios');
-let  cheerio = require('cheerio');
-let db = require('./models');
-let  PORT = 3000;
-let expHbs = require('express-handlebars');
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
